@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://kit.fontawesome.com/2bea23bd0b.js" crossorigin="anonymous"></script>
+
+    <title>Consistencia</title>
+</head>
+<body>
+    <h1>Consistencia</h1>
+
+    <div class="contenido1">
+        <label for="ps1">Peso 1</label>
+        <input class="btn-3 p1" type="number" name="" id="ps1" min="0" oninput="consistencia()" step="0.01" pattern="[0-9]+">
+        <label for="ps2">Peso 2</label>
+        <input class="btn-3 p1" type="number" name="" id="ps2" min="0"  oninput="consistencia()" step="0.01">
+        <label for="ps3">Peso 3</label>
+        <input class="btn-3 mover"  type="number" name="" id="ps3" step="0.01" min="0"   oninput="consistencia()" >
+        <label for="ppp">Resultado</label>
+        <input class="btn-3 p1"  type="number" name="" id="ppp"  readonly>
+
+    </div>
+    <div class="regresar">
+        <a href="index.html" ><i class="fa-solid fa-circle-arrow-left"></i></a>   
+    </div>
+    <script src="prog.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> 
+
+     
+
+</body>
+</html>

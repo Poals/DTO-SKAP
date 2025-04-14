@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de QR para Páginas Internas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px;
+        }
+        img {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        .download-link, .preview-link {
+            display: block;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generador de Código QR</h1>
+    <input type="text" id="page" placeholder="Escribe la ruta de la página intderna (ej. pagina1.html)">
+    <button onclick="generateQRCode()">Generar QR</button>
+    <div id="qrcode"></div>
+    <a id="downloadLink" class="download-link" download="codigo-qr.png" style="display:none;">Descargar QR</a>
+    <a id="previewLink" class="preview-link" target="_blank" style="display:none;">Ir a la Página Interna</a>
+
+    <!-- Incluye la biblioteca qrcode.min.js -->
+    <script src="js/qrcode.min.js"></script>
+    <script>
+        function generateQRCode() {
+            // Obtén la ruta de la página interna del input
+            const page = document.getElementById('page').value.trim();
+            
+            // Verifica que la ruta no esté vacía
+            if (!page) {
+                alert('Por favor, ingresa la ruta de la página interna.');
+                return;
+            }
+            
+            // Limpia el div del código QR anterior
+            const qrcodeDiv = document.getElementById('qrcode');
+            const downloadLink = document.getElementById('downloadLink');
+            const previewLink = document.getElementById('previewLink');
+            qrcodeDiv.innerHTML = '';
+            
+            // Construye la URL relativa (puedes ajustarla según tu estructura de rutas)
+            const url = new URL(page, window.location.href).href;
+            
+            // Genera el código QR
+            QRCode.toCanvas(url, { width: 200 }, function (error, canvas) {
+                if (error) {
+                    console.error(error);
+                } else {
+                    // Añade el canvas al div
+                    qrcodeDiv.appendChild(canvas);
+                    
+                    // Configura el enlace de descarga
+                    const dataUrl = canvas.toDataURL('image/png');
+                    downloadLink.href = dataUrl;
+                    downloadLink.style.display = 'block';
+                    
+                    // Configura el enlace de vista previa
+                    previewLink.href = url;
+                    previewLink.style.display = 'block';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

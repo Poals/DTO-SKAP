@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla Editable con IndexedDB</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        td {
+            cursor: pointer;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Tabla Editable con IndexedDB</h1>
+
+    <button id="addRow">Agregar Fila</button>
+    <button id="saveData">Guardar Datos</button>
+    <button id="exportData">Exportar a JSON</button>
+
+    <table id="editableTable">
+        <thead>
+            <tr>
+                <th>ID Evaluador</th>
+                <th>Evaluador</th>
+                <th>ID Operador</th>
+                <th>Ejecutor</th>
+                <th>Posición</th>
+                <th>ID Documento</th>
+                <th>Nombre del Documento</th>
+                <th>Estándar</th>
+                <th>Criterio</th>
+                <th>Semana</th>
+                <th>Fecha Última DTO</th>
+                <th>Fecha Ejecución</th>
+                <th>Estatus</th>
+                <th>Puntaje</th>
+                <th>Link</th>
+                <th>Mes</th>
+                <th>Equipo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Filas editables se agregarán aquí -->
+        </tbody>
+    </table>
+
+    <script>
+        const dbName = "DatosDB";
+        const storeName = "datos";
+
+        // Abrir o crear la base de datos
+        const openDB = () => {
+            return new Promise((resolve, reject) => {
+                const request = indexedDB.open(dbName, 1);
+
+                request.onupgradeneeded = (event) => {
+                    const db = event.target.result;
+                    if (!db.objectStoreNames.contains(storeName)) {
+                        db.createObjectStore(storeName, { keyPath: "id_evaluador" });
+                    }
+                };
+
+                request.onsuccess = (event) => {
+                    resolve(event.target.result);
+                };
+
+                request.onerror = (event) => {
+                    reject(event.target.error);
+                };
+            });
+        };
+
+        // Guardar datos en IndexedDB
+        const saveDataToIndexedDB = async (data) => {
+            const db = await openDB();
+            const transaction = db.transaction(storeName, "readwrite");
+            const store = transaction.objectStore(storeName);
+
+            data.forEach((item) => {
+                store.put(item);
+            });
+
+            transaction.oncomplete = () => {
+                alert("Datos guardados en IndexedDB.");
+            };
+
+            transaction.onerror = (event) => {
+                console.error("Error al guardar datos:", event.target.error);
+            };
+        };
+
+        // Exportar datos a JSON
+        const exportDataToJSON = async () => {
+            const db = await openDB();
+            const transaction = db.transaction(storeName, "readonly");
+            const store = transaction.objectStore(storeName);
+
+            const request = store.getAll();
+            request.onsuccess = () => {
+                const data = request.result;
+                const jsonData = JSON.stringify(data, null, 2);
+                const blob = new Blob([jsonData], { type: "application/json" });
+                const url = URL.createObjectURL(blob);
+
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "datos.json";
+                a.click();
+
+                URL.revokeObjectURL(url);
+            };
+        };
+
+        // Agregar una fila editable a la tabla
+        const addRow = () => {
+            const tableBody = document.getElementById("editableTable").querySelector("tbody");
+            const row = document.createElement("tr");
+
+            for (let i = 0; i < 17; i++) {
+                const cell = document.createElement("td");
+                cell.contentEditable = "true"; // Hacer la celda editable
+                row.appendChild(cell);
+            }
+
+            tableBody.appendChild(row);
+        };
+
+        // Obtener datos de la tabla
+        const getTableData = () => {
+            const tableBody = document.getElementById("editableTable").querySelector("tbody");
+            const rows = tableBody.querySelectorAll("tr");
+            const data = [];
+
+            rows.forEach((row) => {
+                const cells = row.querySelectorAll("td");
+                const rowData = {
+                    id_evaluador: cells[0].textContent.trim(),
+                    evaluador: cells[1].textContent.trim(),
+                    id_operador: cells[2].textContent.trim(),
+                    ejecutor: cells[3].textContent.trim(),
+                    posicion: cells[4].textContent.trim(),
+                    id_documento: cells[5].textContent.trim(),
+                    nombre_documento: cells[6].textContent.trim(),
+                    estandar: cells[7].textContent.trim(),
+                    criterio: cells[8].textContent.trim(),
+                    semana: cells[9].textContent.trim(),
+                    fecha_ultima_dto: cells[10].textContent.trim(),
+                    fecha_ejecucion: cells[11].textContent.trim(),
+                    estatus: cells[12].textContent.trim(),
+                    puntaje: cells[13].textContent.trim(),
+                    link: cells[14].textContent.trim(),
+                    mes: cells[15].textContent.trim(),
+                    equipo: cells[16].textContent.trim(),
+                };
+                data.push(rowData);
+            });
+
+            return data;
+        };
+
+        // Manejar eventos de los botones
+        document.getElementById("addRow").addEventListener("click", addRow);
+
+        document.getElementById("saveData").addEventListener("click", () => {
+            const data = getTableData();
+            saveDataToIndexedDB(data);
+        });
+
+        document.getElementById("exportData").addEventListener("click", exportDataToJSON);
+    </script>
+</body>
+
+</html>

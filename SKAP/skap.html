@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador DTO Elaboración 2025</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            /* Organiza los elementos verticalmente */
+            align-items: center;
+            /* Centra los elementos horizontalmente */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            /* Ocupa toda la altura de la ventana */
+        }
+
+        #contenedor {
+            display: flex;
+
+            /* Permite que las columnas se ajusten en varias filas si es necesario */
+            gap: 20px;
+            /* Espaciado entre columnas */
+            margin: 20px;
+            padding: 20px;
+            width: 100%;
+            /* Ocupa todo el ancho de la página */
+            max-width: 1200px;
+            /* Limita el ancho máximo */
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .columna {
+            display: flex;
+            flex-direction: column;
+            /* Organiza el contenido verticalmente */
+            align-items: center;
+            /* Centra el contenido horizontalmente */
+            justify-content: center;
+            /* Centra el contenido verticalmente */
+            flex: 1 1 calc(33.33% - 20px);
+            /* Cada columna ocupa un tercio del ancho del contenedor menos el espacio del gap */
+            box-sizing: border-box;
+            /* Incluye el padding y el borde en el tamaño total */
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            /* Centra el texto dentro de la columna */
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        h2 {
+            font-size: 1em;
+            margin-top: 10px;
+        }
+
+        p {
+            font-size: 1em;
+            margin-top: 5px;
+        }
+
+        select {
+            width: 100%;
+            margin-top: 5px;
+            padding: 5px;
+        }
+
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Gerenciador DTO Elaboración 2025</h1>
+    <div id="contenedor">
+        <!-- Los datos seleccionados del archivo JSON se mostrarán aquí -->
+    </div>
+
+    <!-- Tabla con las columnas solicitadas -->
+    <table>
+        <thead>
+            <tr>
+                <th>ID Evaluador</th>
+                <th>Evaluador</th>
+                <th>ID Operador</th>
+                <th>Ejecutor</th>
+                <th>Posición</th>
+                <th>ID Documento</th>
+                <th>Nombre del Documento</th>
+                <th>Estándar</th>
+                <th>Criterio</th>
+                <th>Semana</th>
+                <th>Fecha Última DTO</th>
+                <th>Fecha Ejecución</th>
+                <th>Estatus</th>
+                <th>Puntaje</th>
+                <th>Link</th>
+                <th>Mes</th>
+                <th>Equipo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aquí se pueden agregar filas dinámicamente si es necesario -->
+            <tr>
+                <td>1</td>
+                <td>Fabian Castaño</td>
+                <td>101</td>
+                <td>Maria Morales</td>
+                <td>Cocinero</td>
+                <td>202</td>
+                <td>Manual de Operaciones</td>
+                <td>ISO 9001</td>
+                <td>Criterio 1</td>
+                <td>Semana 1</td>
+                <td>2025-04-01</td>
+                <td>2025-04-07</td>
+                <td>En Progreso</td>
+                <td>85</td>
+                <td><a href="#">Ver Documento</a></td>
+                <td>Abril</td>
+                <td>Equipo A</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        // Cargar datos desde el archivo JSON
+        fetch('datos.json')
+            .then(response => response.json())
+            .then(data => {
+                const contenedor = document.getElementById('contenedor');
+
+                // Filtrar las categorías que se desean mostrar
+                const categoriasSeleccionadas = [
+                    "Evaluador",
+                    "Posición",
+                    "Estándar",
+                    "Mes",
+                    "Semana",
+                    "Operador",
+                    "Estatus"
+                ];
+
+                // Filtrar los datos del JSON
+                const datosFiltrados = data.informacion.filter(item =>
+                    categoriasSeleccionadas.includes(item.titulo)
+                );
+
+                // Mostrar los datos filtrados en el contenedor
+                datosFiltrados.forEach(item => {
+                    const columna = document.createElement('div');
+                    columna.classList.add('columna');
+
+                    const titulo = document.createElement('h2');
+                    titulo.textContent = item.titulo;
+
+                    const select = document.createElement('select');
+                    item.opciones.forEach(opcion => {
+                        const option = document.createElement('option');
+                        option.textContent = opcion;
+                        select.appendChild(option);
+                    });
+
+                    columna.appendChild(titulo);
+                    columna.appendChild(select);
+                    contenedor.appendChild(columna);
+                });
+            })
+            .catch(error => console.error('Error al cargar el archivo JSON:', error));
+    </script>
+</body>
+
+</html>

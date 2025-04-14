@@ -1,0 +1,253 @@
+{
+    "informacion": [
+        {
+            "titulo": "ID Evaluador",
+            "descripcion": "",
+            "opciones": [
+                "1",
+                "2",
+                "3"
+            ]
+        },
+        {
+            "titulo": "Evaluador",
+            "descripcion": "",
+            "opciones": [
+                "--------",
+                "Fabian Castaño",
+                "Jhon Polo",
+                "Maria Morales"
+            ]
+        },
+        {
+            "titulo": "ID Operador",
+            "descripcion": "",
+            "opciones": [
+                "101",
+                "102",
+                "103"
+            ]
+        },
+        {
+            "titulo": "Ejecutor",
+            "descripcion": "",
+            "opciones": [
+                "Carlos Pérez",
+                "Ana Gómez",
+                "Luis Torres"
+            ]
+        },
+        {
+            "titulo": "Posición",
+            "descripcion": "",
+            "opciones": [
+                "--------",
+                "Bajador",
+                "Cavero",
+                "Cocinero",
+                "Contrapresion",
+                "Electricistas",
+                "Enfriador",
+                "Fermentador",
+                "Filtrador",
+                "Instrumentista",
+                "Líder",
+                "Materias Primas",
+                "Mecánico"
+            ]
+        },
+        {
+            "titulo": "ID Documento",
+            "descripcion": "",
+            "opciones": [
+                "202",
+                "203",
+                "204"
+            ]
+        },
+        {
+            "titulo": "Nombre del Documento",
+            "descripcion": "",
+            "opciones": [
+                "Manual de Operaciones",
+                "Procedimiento de Seguridad",
+                "Guía de Calidad"
+            ]
+        },
+        {
+            "titulo": "Estándar",
+            "descripcion": "",
+            "opciones": [
+                "--------",
+                "Proceso",
+                "Aseo",
+                "ATO",
+                "CALIDAD",
+                "DOSIFICACION",
+                "LUBRICACION",
+                "MANTENIMIENTO",
+                "MODULACION",
+                "SEGURIDAD",
+                "TRASIEGO"
+            ]
+        },
+        {
+            "titulo": "Criterio",
+            "descripcion": "",
+            "opciones": [
+                "--------",
+                "Criterio 1",
+                "Criterio 2",
+                "Criterio 3"
+            ]
+        },
+        {
+            "titulo": "Semana",
+            "descripcion": "",
+            "opciones": [
+                "--------",
+                "Semana 1",
+                "Semana 2",
+                "Semana 3",
+                "Semana 4",
+                "Semana 5",
+                "Semana 6",
+                "Semana 7",
+                "Semana 8",
+                "Semana 9",
+                "Semana 10",
+                "Semana 11",
+                "Semana 12",
+                "Semana 13",
+                "Semana 14",
+                "Semana 15",
+                "Semana 16",
+                "Semana 17",
+                "Semana 18",
+                "Semana 19",
+                "Semana 20",
+                "Semana 21",
+                "Semana 22",
+                "Semana 23",
+                "Semana 24",
+                "Semana 25",
+                "Semana 26",
+                "Semana 27",
+                "Semana 28",
+                "Semana 29",
+                "Semana 30",
+                "Semana 31",
+                "Semana 32",
+                "Semana 33",
+                "Semana 34",
+                "Semana 35",
+                "Semana 36",
+                "Semana 37",
+                "Semana 38",
+                "Semana 39",
+                "Semana 40",
+                "Semana 41",
+                "Semana 42",
+                "Semana 43",
+                "Semana 44",
+                "Semana 45",
+                "Semana 46",
+                "Semana 47",
+                "Semana 48",
+                "Semana 49",
+                "Semana 50",
+                "Semana 51",
+                "Semana 52"
+            ]
+        },
+        {
+            "titulo": "Mes",
+            "descripcion": "",
+            "opciones": [
+                "--------",
+                "Enero",
+                "Febrero",
+                "Marzo",
+                "Abril",
+                "Mayo",
+                "Junio",
+                "Julio",
+                "Agosto",
+                "Septiembre",
+                "Octubre",
+                "Noviembre",
+                "Diciembre"
+            ]
+        },
+        {
+            "titulo": "Fecha Última DTO",
+            "descripcion": "",
+            "opciones": [
+                "--------",
+                "2025-04-01",
+                "2025-04-02",
+                "2025-04-03"
+            ]
+        },
+        {
+            "titulo": "Fecha Ejecución",
+            "descripcion": "",
+            "opciones": [
+                "--------",
+                "2025-04-07",
+                "2025-04-08",
+                "2025-04-09"
+            ]
+        },
+        {
+            "titulo": "Operador",
+            "descripcion": "",
+            "opciones": [
+                "--------",
+                "Equipo A",
+                "Equipo B",
+                "Equipo C"
+            ]
+        },
+        {
+            "titulo": "Estatus",
+            "descripcion": "",
+            "opciones": [
+                "--------",
+                "En Progreso",
+                "Completado",
+                "Pendiente"
+            ]
+        },
+        {
+            "titulo": "Puntaje",
+            "descripcion": "",
+            "opciones": [
+                "--------",
+                "85",
+                "90",
+                "95"
+            ]
+        },
+        {
+            "titulo": "Link",
+            "descripcion": "",
+            "opciones": [
+                "--------",
+                "https://example.com/doc1",
+                "https://example.com/doc2",
+                "https://example.com/doc3"
+            ]
+        },
+        {
+            "titulo": "Equipo",
+            "descripcion": "",
+            "opciones": [
+                "--------",
+                "Equipo A",
+                "Equipo B",
+                "Equipo C"
+            ]
+        }
+    ]
+}
